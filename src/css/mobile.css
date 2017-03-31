@@ -1,0 +1,140 @@
+html{
+  font-size: 50px;
+}
+
+#mobileheader{
+  flex: 1;
+  background: #f6f6f6;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+#mobileheader header{
+  border-bottom: 1px solid #2db7f5;
+  padding-left: 10px;
+}
+
+#mobileheader header img{
+  height: 40px;
+  vertical-align: middle;
+}
+
+#mobileheader header span{
+  font-size: 20px;
+  vertical-align: top;
+  padding-left: 5px;
+  color: #2db7f5;
+  vertical-align: middle;
+}
+
+#mobileheader i{
+  font-size: 0.5rem;
+  float: right;
+  margin-right: 0.15rem;
+  margin-top: 0.15rem;
+  color:#2db7f5;
+}
+
+#mobileheader ul li{
+  font-size: 30px;
+}
+
+#mobileheader .slick-list img{
+  height: 220px;
+  width:100%;
+}
+.ant-tabs{
+  margin-top: 41px;
+}
+.ant-tabs-bar{
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background: #f6f6f6;
+}
+.ant-tabs-nav-wrap .ant-tabs-nav{
+  margin-left: 10px;
+}
+.ant-tabs-nav-wrap .ant-tabs-nav .ant-tabs-tab{
+  padding: 8px 10px;
+  margin-right: 10px;
+}
+.ant-tabs-content{
+  margin-top: 40px;
+}
+
+.mobile_list{
+    min-height: 600px;
+}
+.mobile_list .ant-card{
+    display: inline-block;
+    vertical-align: top;
+    margin: 1%;
+    width: 48%;
+}
+.mobile-image{
+    position: relative;
+    padding-top: 140%;
+    height: 0px;
+    overflow: hidden;
+}
+.mobile-image img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.mobile-card{
+    padding: 10px;
+}
+.mobile-card h3{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #111;
+    height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.mobile-card p{
+    font-size: 12px;
+    color: #bbb;
+    line-height: 20px;
+}
+.mobile-foot .ant-back-top{
+  right: 10px;
+}
+.mobileDetailContainer{
+  position: relative;
+  top: 30px;
+  padding: 10px;
+  margin: 10px auto;
+}
+.mobileDetailContainer h1{
+    line-height: 30px;
+    font-size: 16px;
+}
+.mobileDetailContainer h2{
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+.mobileDetailContainer .img_wrap img{
+    vertical-align: top;
+    margin-bottom: 10px;
+    display: block; 
+    width: 100%;
+}
+.mobileDetailContainer .content{
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}

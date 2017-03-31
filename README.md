@@ -2,5 +2,5 @@
 http://www.xxmoviexx.com
 
 npm install
--------------
+```
 npm start

@@ -63,6 +63,7 @@ html{
   margin-right: 10px;
 }
 .ant-tabs-content{
+  min-height: 600px;
   margin-top: 40px;
 }
 
@@ -113,7 +114,7 @@ html{
 }
 .mobileDetailContainer{
   position: relative;
-  min-height: 400px;
+  min-height: 600px;
   top: 30px;
   padding: 10px;
   margin: 10px auto;

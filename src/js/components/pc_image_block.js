@@ -16,7 +16,7 @@ export default class PCImageBlock extends React.Component {
 		let This = this;
 		This.setState({loading: true});
 		let listName = "listData_"+This.state.type;
-		getListData("FilmDetail",this.state.p,20,this.state.type,function(data){
+		getListData("FilmDetail",this.state.p,this.props.pagesize,this.state.type,function(data){
 			This.setState({[listName] : data,"loading": false});
 		});
 	};
@@ -26,7 +26,7 @@ export default class PCImageBlock extends React.Component {
     	let listName = "listData_"+nextProps.type;
     	this.setState({"type": nextProps.type,[listName]:this.state[listName],"loading": true,"p":1});
     	if(!this.state[listName] || this.state[listName].length===0){
-    		getListData("FilmDetail",this.state.p,20,nextProps.type,function(data){
+    		getListData("FilmDetail",this.state.p,this.props.pagesize,nextProps.type,function(data){
 					This.setState({[listName]: data,"loading": false});
 				});
     	}else{
@@ -38,7 +38,7 @@ export default class PCImageBlock extends React.Component {
     this.setState({ p:this.state.p += 1, btnLoading: true });
     let This = this;
     let listName = "listData_"+This.props.type;
-		getListData("FilmDetail",this.state.p,20,this.props.type,function(data){
+		getListData("FilmDetail",this.state.p,this.props.pagesize,this.props.type,function(data){
 			This.setState({[listName]: This.state[listName].concat(data),"btnLoading": false});
 		});
   };

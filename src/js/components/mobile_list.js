@@ -15,14 +15,14 @@ export default class MobileList extends React.Component {
 	componentWillMount() {
 		let This = this;
 		This.setState({loading: true});
-		getListData("FilmDetail",this.state.p,20,this.props.type,function(data){
+		getListData("FilmDetail",this.state.p,this.props.pagesize,this.props.type,function(data){
 			This.setState({listData : data,"loading": false});
 		});
 	};
   getMore(){
     this.setState({ p:this.state.p += 1, btnLoading: true });
     let This = this;
-		getListData("FilmDetail",this.state.p,20,this.props.type,function(data){
+		getListData("FilmDetail",this.state.p,this.props.pagesize,this.props.type,function(data){
 			This.setState({listData: This.state.listData.concat(data),"btnLoading": false});
 		});
   };

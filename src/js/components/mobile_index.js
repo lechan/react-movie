@@ -12,16 +12,16 @@ export default class MobileIndex extends React.Component {
 				<MobileHeader></MobileHeader>
 				<Tabs defaultActiveKey="1">
 					<TabPane tab="欧美电影" key="1">
-						<MobileList type={"10001"} />
+						<MobileList type={"10001"} pagesize="10" />
 					</TabPane>
 					<TabPane tab="国内电影" key="2">
-						<MobileList type={"10002"} />
+						<MobileList type={"10002"} pagesize="10" />
 					</TabPane>
 					<TabPane tab="日韩电影" key="3">
-						<MobileList type={"10003"} />
+						<MobileList type={"10003"} pagesize="10" />
 					</TabPane>
 					<TabPane tab="欧美电视剧" key="4">
-						<MobileList type={"10004"} />
+						<MobileList type={"10004"} pagesize="10" />
 					</TabPane>
 				</Tabs>
 				<MobileFooter></MobileFooter>

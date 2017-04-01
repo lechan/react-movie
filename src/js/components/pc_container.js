@@ -23,7 +23,7 @@ export default class PCContainer extends React.Component {
 			<Row>
 				<Col span={2}></Col>
 				<Col span={20} class="container">
-					<PCImageBlock type={this.state.type} />
+					<PCImageBlock type={this.state.type} pagesize={18} />
 				</Col>
 				<Col span={2}></Col>
 			</Row>

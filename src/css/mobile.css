@@ -113,6 +113,7 @@ html{
 }
 .mobileDetailContainer{
   position: relative;
+  min-height: 400px;
   top: 30px;
   padding: 10px;
   margin: 10px auto;

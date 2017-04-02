@@ -1,12 +1,20 @@
 import React from 'react';
 import {Row, Col,Menu,Icon} from 'antd';
-import {Link} from 'react-router'
+import {Link} from 'react-router';
+import {getTabData} from '../util/tool';
 class PCHeader extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			tabData : [],
 			current: this.props.type
 		};
+	};
+	componentWillMount() {
+		var This = this;
+		getTabData(function(data){
+			This.setState({tabData : data});
+		});
 	};
 	handleClick(e) {
     this.setState({
@@ -15,6 +23,16 @@ class PCHeader extends React.Component {
     this.props.changeType(e.key);
   };
 	render() {
+		const tabData = this.state.tabData;
+		const menuContent = tabData && tabData.length
+		 	? tabData.map((item, index) =>
+				<Menu.Item key={item.type_code}>
+					<Link to={`list/${item.type_code}`}>
+						<Icon type="appstore"/>{item.type_name}
+					</Link>
+				</Menu.Item>
+			)
+			:'';
 		return (
 			<header class="header">
 				<Row>
@@ -27,26 +45,7 @@ class PCHeader extends React.Component {
 					</Col>
 					<Col span={16}>
 						<Menu mode="horizontal" onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]}>
-							<Menu.Item key="10001">
-								<Link to="list/10001">
-									<Icon type="appstore"/>欧美电影
-								</Link>
-							</Menu.Item>
-							<Menu.Item key="10002">
-								<Link to="list/10002">
-									<Icon type="appstore"/>国内电影
-								</Link>
-							</Menu.Item>
-							<Menu.Item key="10003">
-								<Link to="list/10003">
-									<Icon type="appstore"/>日韩电影
-								</Link>
-							</Menu.Item>
-							<Menu.Item key="10004">
-								<Link to="list/10004">
-									<Icon type="appstore"/>欧美电视剧
-								</Link>
-							</Menu.Item>
+							{menuContent}
 						</Menu>
 					</Col>
 					<Col span={2}></Col>

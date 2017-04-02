@@ -3,6 +3,25 @@ const appId = 'PGw4c4KlYFavFHmw6nOwg3Li';
 const appKey = 'XiC1O9I9oNfzcglUwfxt5uEY';
 AV.init({ appId, appKey });
 
+//获取种类编码
+const getTabData = function(callBack){
+  let Post = AV.Object.extend('FilmType');
+  let post = new Post();
+  let query = new AV.Query(Post);
+  let listObj = [];
+  query.limit(20);
+  query.find().then(function (results) {
+    for (let i = 0; i < results.length; i++) {
+      let object = results[i];
+      listObj.push(object.attributes);
+      listObj[i].id = object.id;
+    }
+    callBack(listObj);
+  }).catch(function(error) {
+    console.log("Error: " + error.code + " " + error.message);
+  });;
+};
+
 //获取列表数据
 const getListData = function(className, p, pNum, type, callBack){
   let Post = AV.Object.extend(className);
@@ -72,6 +91,7 @@ const formatDate = function(nS, Ft) {
 }
 
 export{
+  getTabData,
 	getListData,
   getDetailData,
   formatDate

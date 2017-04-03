@@ -2,6 +2,7 @@ import React from 'react';
 import {Card,Spin,Button} from 'antd';
 import {Router, Route, Link, browserHistory} from 'react-router';
 import {getListData,formatDate} from '../util/tool';
+import Masonry from 'react-masonry-component';
 export default class MobileList extends React.Component {
 	constructor() {
 		super();
@@ -43,11 +44,22 @@ export default class MobileList extends React.Component {
 				</Card>
 			)
 			: '';
+		const masonryOptions = {
+		    transitionDuration: 0
+		};
 		return (
-			<div class="mobile_list">
-				{list}
-				<div class="loading">
-					<Spin size="large" tip="加载中..." spinning={this.state.loading} />
+			<div>
+				<div class="mobile_list">
+					<Masonry
+	          options={masonryOptions} // default {}
+	          disableImagesLoaded={false} // default false
+	          updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+	        >
+						{list}
+					</Masonry>
+					<div class="loading">
+						<Spin size="large" tip="加载中..." spinning={this.state.loading} />
+					</div>
 				</div>
 				<div class="more">
 					<Button type="primary" size="large" loading={this.state.btnLoading} onClick={this.getMore.bind(this)}>加载更多</Button>

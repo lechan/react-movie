@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var path = require('path');
 module.exports = {
   context: path.join(__dirname),
-  // devtool: debug,
+  devtool: debug ? "inline-sourcemap" : null,
   entry: "./src/js/root.js",
   module: {
     loaders: [
@@ -26,13 +26,20 @@ module.exports = {
     filename: "./src/bundle.js"
   },
   plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin({
+      'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
     new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false,  // remove all comments
+      },
       compress: {
         warnings: false
       },
-      minimize: true
+      mangle: false, 
+      sourcemap: false
     }),
   ],
 };

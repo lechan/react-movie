@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col,Menu,Icon} from 'antd';
+import {Row, Col,Menu,Icon,Input,message} from 'antd';
 import {Link} from 'react-router';
 import {getTabData} from '../util/tool';
 class PCHeader extends React.Component {
@@ -7,7 +7,9 @@ class PCHeader extends React.Component {
 		super(props);
 		this.state = {
 			tabData : [],
-			current: this.props.type
+			current: !this.props.keyword?this.props.type:'',
+			inputValue: this.props.keyword,
+			keyword: this.props.keyword
 		};
 	};
 	componentWillMount() {
@@ -19,20 +21,38 @@ class PCHeader extends React.Component {
 	handleClick(e) {
     this.setState({
       current: e.key,
+      keyword: ''
     });
     this.props.changeType(e.key);
+    this.setState({ inputValue: '' });
+  };
+  searchList(value){
+  	if(value!==""){
+	  	this.setState({
+	  		current:'',
+	  		inputValue:value,
+	  		keyword:value
+	  	});
+	  	this.props.changeKeyWord(value);
+  	}else{
+  		message.success('请输入电影名称')
+  	}
+  };
+  onChangeInputValue(e){
+    this.setState({ inputValue: e.target.value });
   };
 	render() {
 		const tabData = this.state.tabData;
 		const menuContent = tabData && tabData.length
 		 	? tabData.map((item, index) =>
 				<Menu.Item key={item.type_code}>
-					<Link to={`list/${item.type_code}`}>
+					<Link to={`/list/${item.type_code}`}>
 						<Icon type="appstore"/>{item.type_name}
 					</Link>
 				</Menu.Item>
 			)
 			:'';
+		const Search = Input.Search;
 		return (
 			<header class="header">
 				<Row>
@@ -44,6 +64,18 @@ class PCHeader extends React.Component {
 						</a>
 					</Col>
 					<Col span={16}>
+						<div class="searchbar">
+							<label>搜索电影：</label>
+							<Search 
+								size="large" 
+								placeholder="请输入电影名称" 
+								style={{ width: 500 }} 
+								value={this.state.inputValue}
+								defaultValue={this.state.keyword} 
+								onChange={this.onChangeInputValue}
+								onSearch={value => this.searchList(value)} 
+							/>
+					  </div>
 						<Menu mode="horizontal" onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]}>
 							{menuContent}
 						</Menu>

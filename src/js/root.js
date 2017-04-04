@@ -14,6 +14,7 @@ export default class Root extends React.Component {
 					<Router history={hashHistory}>
 						<Route path="/" component={PCIndex}></Route>
 						<Route path="/list/:type" component={PCIndex}></Route>
+						<Route path="/search/q=:keyword" component={PCIndex}></Route>
 						<Route path="/detail/:id" component={PCDetail}></Route>
 					</Router>
 				</MediaQuery>

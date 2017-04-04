@@ -42,7 +42,7 @@ const getListData = function(className, p, pNum, type, callBack){
     callBack(listObj);
   }).catch(function(error) {
     console.log("Error: " + error.code + " " + error.message);
-  });;
+  });
 };
 
 //获取详情数据
@@ -58,7 +58,30 @@ const getDetailData = function(className, id, callBack){
     callBack(listObj);
   }).catch(function(error) {
     console.log("Error: " + error.code + " " + error.message);
-  });;
+  });
+};
+
+//模糊搜索获取列表数据
+const searchListData = function(className,keyword, p, pNum, callBack){
+  let Post = AV.Object.extend(className);
+  let post = new Post();
+  let query = new AV.Query(Post);
+  let listObj = [];
+  query.descending('publish_time');
+  query.exists('film_imgs');
+  query.contains('film_name',keyword);
+  query.limit(pNum);
+  query.skip((p - 1) * pNum);
+  query.find().then(function (results) {
+    for (let i = 0; i < results.length; i++) {
+      let object = results[i];
+      listObj.push(object.attributes);
+      listObj[i].id = object.id;
+    }
+    callBack(listObj);
+  }).catch(function(error) {
+    console.log("Error: " + error.code + " " + error.message);
+  });
 };
 
 /**
@@ -94,5 +117,6 @@ export{
   getTabData,
 	getListData,
   getDetailData,
+  searchListData,
   formatDate
 }

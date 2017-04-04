@@ -35,7 +35,7 @@ class PCHeader extends React.Component {
 	  	});
 	  	this.props.changeKeyWord(value);
   	}else{
-  		message.success('请输入电影名称')
+  		message.warn('请输入电影名称')
   	}
   };
   onChangeInputValue(e){
@@ -72,7 +72,7 @@ class PCHeader extends React.Component {
 								style={{ width: 500 }} 
 								value={this.state.inputValue}
 								defaultValue={this.state.keyword} 
-								onChange={this.onChangeInputValue}
+								onChange={this.onChangeInputValue.bind(this)}
 								onSearch={value => this.searchList(value)} 
 							/>
 					  </div>

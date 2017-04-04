@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card,Spin,Button,message} from 'antd';
+import {Card,Spin,Button,Icon,message} from 'antd';
 import {Router, Route, Link, browserHistory} from 'react-router';
 import {getListData,searchListData,formatDate} from '../util/tool';
 import Masonry from 'react-masonry-component';
@@ -86,7 +86,7 @@ export default class PCImageBlock extends React.Component {
   };
 	render() {
 		const listData = this.state.keyword!=="" ? this.state.listData_default : this.state["listData_"+this.state.type];
-		const list = listData && listData.length
+		const list = listData && (listData.length>0
 			? listData.map((item, index) => 
 				<Card bodyStyle={{ padding: 5 }} key={index}>
 					<Link to={`/detail/${item.id}`} target="_blank">
@@ -100,7 +100,7 @@ export default class PCImageBlock extends React.Component {
 					</Link>
 				</Card>
 			)
-			: <h3 class="no-movie">未找到该电影</h3>;
+			: <h3 class="no-movie"><Icon type="exclamation-circle-o" />未找到该电影</h3>);
 		const masonryOptions = {
 		    transitionDuration: 0
 		};

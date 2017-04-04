@@ -35,6 +35,9 @@
         font-size:14px;
         margin-top:100px;
         font-weight:normal;
+        i{
+            margin-right:5px;
+        }
     }
     .ant-card {
         display: inline-block;
@@ -105,9 +108,11 @@
 }
 .loading {
     text-align: center;
-}
-.loading .ant-spin-dot {
-    margin: 0 auto 10px;
+    padding-top:50px;
+    width:100%;
+    .ant-spin-dot {
+        margin: 0 auto 10px;
+    }
 }
 .more {
     text-align: center;

@@ -1,6 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+
 module.exports = {
   context: path.join(__dirname),
   devtool: debug ? "inline-sourcemap" : false,
@@ -29,21 +30,23 @@ module.exports = {
     path: __dirname,
     filename: "./src/bundle.js"
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin({
-      'process.env': {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false,  // remove all comments
-      },
-      compress: {
-        warnings: false
-      },
-      mangle: false, 
-      sourcemap: false
-    }),
-  ],
+  plugins: debug
+           ? []
+           : [
+              new webpack.DefinePlugin({
+                "process.env": { 
+                   NODE_ENV: JSON.stringify("production") 
+                 }
+              }),
+              new webpack.optimize.UglifyJsPlugin({
+                output: {
+                  comments: false,  // remove all comments
+                },
+                compress: {
+                  warnings: false
+                },
+                mangle: false, 
+                sourcemap: false
+              }),
+          ]
 };

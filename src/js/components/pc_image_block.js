@@ -33,7 +33,7 @@ export default class PCImageBlock extends React.Component {
 		let This = this;
 		if(nextProps.keyword!==""){
 			if(nextProps.keyword !== this.props.keyword){
-	    	this.setState({"type":"","keyword":nextProps.keyword,"listData_default":this.state.listData_default,"loading": true,"p":1});
+	    	this.setState({"type":"","keyword":nextProps.keyword,"listData_default":[],"loading": true,"p":1});
     		searchListData("FilmDetail",nextProps.keyword,this.state.p,this.props.pagesize,function(data){
 					This.setState({listData_default: data,"loading": false});
 				});
@@ -87,10 +87,10 @@ export default class PCImageBlock extends React.Component {
 	render() {
 		const listData = this.state.keyword!=="" ? this.state.listData_default : this.state["listData_"+this.state.type];
 		const list = listData && (listData.length>0
-			? listData.map((item, index) => 
+			? listData.map((item, index) =>
 				<Card bodyStyle={{ padding: 5 }} key={index}>
 					<Link to={`/detail/${item.id}`} target="_blank">
-						<div class="custom-image">
+						<div class="custom-image" style={{paddingTop:`${item.height?(item.height/item.width)*100:140}%`}}>
 							<img title={item.film_name} alt={item.film_name} src={item.film_imgs[0]}/>
 						</div>
 						<div class="custom-card">

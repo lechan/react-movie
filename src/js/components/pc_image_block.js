@@ -52,11 +52,6 @@ export default class PCImageBlock extends React.Component {
 	    }
 		}
   };
-  componentDidUpdate() {
-  	document.querySelectorAll('.custom-image iframe').forEach(function(e,i){
-  		console.log(e.getAttribute('data-img'));
-  	});
-  };
   getMore(){
     this.setState({ p:this.state.p += 1, btnLoading: true });
     let This = this;

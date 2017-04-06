@@ -32,12 +32,12 @@ export default class MobileList extends React.Component {
 		const list = listData && listData.length
 			? listData.map((item, index) => 
 				<Card bodyStyle={{ padding: 5 }} key={index}>
-					<Link to={`detail/${item.id}`}>
+					<Link to={`detail/${item.id}`} target="_blank">
 						<div class="mobile-image" style={{paddingTop:`${item.height?(item.height/item.width)*100:140}%`}}>
 							<iframe frameBorder="0" scrolling="no" width="100%" height="100%" src={`
 								javascript:void(function(){document.open();document.write('
 								<style type="text/css">body{margin:0;}</style>
-								<a href="/#/detail/${item.id}"><img width="100%" src="${item.film_imgs[0]}" title="${item.film_name}" /></a>
+								<a href="/#/detail/${item.id}" target="_blank"><img width="100%" src="${item.film_imgs[0]}" title="${item.film_name}" /></a>
 								');document.close();}())`} data-img={item.film_imgs[0]}></iframe>
 							{/*<img alt="" src={item.film_imgs[0]}/>*/}
 						</div>

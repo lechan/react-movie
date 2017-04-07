@@ -59,7 +59,7 @@ class PCHeader extends React.Component {
 					<Col span={2}></Col>
 					<Col span={3}>
 						<a href="/" class="logo">
-							<img src="./src/images/logo.png" alt="logo"/>
+							<i class="logo"></i>
 							<span>电影头条</span>
 						</a>
 					</Col>

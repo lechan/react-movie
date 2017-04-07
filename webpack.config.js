@@ -1,11 +1,13 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   context: path.join(__dirname),
   devtool: debug ? "inline-sourcemap" : false,
-  entry: "./src/js/root.js",
+  entry: path.resolve(__dirname, "./src/js/root.js"),
   module: {
     loaders: [
       {
@@ -17,22 +19,41 @@ module.exports = {
           plugins: ['react-html-attrs'], //添加组件的插件配置
         }
       },
-      //下面是使用 ant-design 的配置文件
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { 
+        test: /\.css$/, 
+        loader: 'style-loader!css-loader'
+        // loader: ExtractTextPlugin.extract("style-loader","css-loader") 
+      },
       {
         test: /\.scss$/,
-        loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+        // loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+        loaders: ["style", "css", "sass"]
+      },
+      {
+        test: /\.(jpg|png|jpeg|svg|gif)$/,
+        //小于8172b的将压缩成base64格式大于则保存至output下的path下的制定目录
+        loader: 'url-loader?limit=8172&name=images/[name].[ext]'
       }
     ]
     
   },
   output: {
-    path: __dirname,
-    filename: "./src/bundle.js"
+    // publicPath: '../',
+    path: path.resolve(__dirname, './build'),
+    filename: "bundle.js"
   },
   plugins: debug
-           ? []
+           ? [
+            new HtmlWebpackPlugin({
+              filename:'index.html',
+              template:'index.html'
+            })
+           ]
            : [
+              new HtmlWebpackPlugin({
+                filename:'index.html',
+                template:'index.html'
+              }),
               new webpack.DefinePlugin({
                 "process.env": { 
                    NODE_ENV: JSON.stringify("production") 

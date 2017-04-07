@@ -19,6 +19,13 @@
     background: #fff;
     z-index: 1;
     padding: 10px 0px;
+    i.logo{
+        display: inline-block;
+        background: url(../images/logo.png) no-repeat center;
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+    }
     .searchbar {
         label{
             font-size:14px;

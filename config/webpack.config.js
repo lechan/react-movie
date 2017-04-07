@@ -3,11 +3,12 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var dirname = path.resolve(__dirname, '../');
 
 module.exports = {
-  context: path.join(__dirname),
+  context: dirname,
   devtool: debug ? "inline-sourcemap" : false,
-  entry: path.resolve(__dirname, "./src/js/root.js"),
+  entry: path.resolve(dirname, "./src/js/root.js"),
   module: {
     loaders: [
       {
@@ -39,20 +40,20 @@ module.exports = {
   },
   output: {
     // publicPath: '../',
-    path: path.resolve(__dirname, './build'),
-    filename: "bundle.js"
+    path: path.resolve(dirname, './build'),
+    filename: "js/bundle.js"
   },
   plugins: debug
            ? [
             new HtmlWebpackPlugin({
               filename:'index.html',
-              template:'index.html'
+              template:'src/index.html'
             })
            ]
            : [
               new HtmlWebpackPlugin({
                 filename:'index.html',
-                template:'index.html'
+                template:'src/index.html'
               }),
               new webpack.DefinePlugin({
                 "process.env": { 

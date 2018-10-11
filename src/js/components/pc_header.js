@@ -19,28 +19,29 @@ class PCHeader extends React.Component {
 		});
 	};
 	handleClick(e) {
-    this.setState({
-      current: e.key,
-      keyword: ''
-    });
-    this.props.changeType(e.key);
-    this.setState({ inputValue: '' });
-  };
-  searchList(value){
-  	if(value!==""){
-	  	this.setState({
-	  		current:'',
-	  		inputValue:value,
-	  		keyword:value
-	  	});
-	  	this.props.changeKeyWord(value);
-  	}else{
-  		message.warn('请输入电影名称')
-  	}
-  };
-  onChangeInputValue(e){
-    this.setState({ inputValue: e.target.value });
-  };
+		this.setState({
+		current: e.key,
+		keyword: ''
+		});
+		this.props.changeType(e.key);
+		this.setState({ inputValue: '' });
+	};
+	searchList(value){
+		if(value!==""){
+			window.open('https://www.cilimao.me/search?word=' + value)
+			// this.setState({
+			// 	current:'',
+			// 	inputValue:value,
+			// 	keyword:value
+			// });
+			// this.props.changeKeyWord(value);
+		}else{
+			message.warn('请输入电影名称')
+		}
+	};
+	onChangeInputValue(e){
+		this.setState({ inputValue: e.target.value });
+	};
 	render() {
 		const tabData = this.state.tabData;
 		const menuContent = tabData && tabData.length

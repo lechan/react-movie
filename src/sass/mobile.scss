@@ -30,7 +30,7 @@ html{
   vertical-align: middle;
 }
 
-#mobileheader i{
+#mobileheader i.anticon-setting{
   font-size: 0.5rem;
   float: right;
   margin-right: 0.15rem;
@@ -46,8 +46,20 @@ html{
   height: 220px;
   width:100%;
 }
+.searchbar {
+  margin: 10px 10px 0;
+  padding-bottom: 10px;
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .anticon-search:before {
+    font-size: 20px;
+  }
+}
 .ant-tabs{
-  margin-top: 41px;
+  margin-top: 110px;
+  background: #fff;
 }
 .ant-tabs-bar{
   position: fixed;

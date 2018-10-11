@@ -52,6 +52,10 @@ html{
   label {
     display: block;
     margin-bottom: 5px;
+    a {
+      float: right;
+      text-decoration: underline;
+    }
   }
   .anticon-search:before {
     font-size: 20px;

@@ -66,7 +66,7 @@ class PCHeader extends React.Component {
 					</Col>
 					<Col span={17}>
 						<div class="searchbar">
-							<label>搜索电影：</label>
+							<label>搜索电影：<a href="https://www.cilimao.me/online_play" target="_blank">付费视频免费看</a></label>
 							<Search 
 								size="large" 
 								placeholder="请输入电影名称" 

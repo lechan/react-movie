@@ -88,7 +88,7 @@ export default class PCImageBlock extends React.Component {
 		const moreBtn = this.refs.more
 		const loadMoreFn = this.getMore.bind(this)
 		let timeoutId
-		function callback() {
+		const callback = () => {
 			const top = moreBtn.getBoundingClientRect().top
 			const windowHeight = window.screen.height
 			if (top && top < windowHeight - 200) {
@@ -96,7 +96,7 @@ export default class PCImageBlock extends React.Component {
 				loadMoreFn()
 			}
 		}
-		window.addEventListener('scroll', function () {
+		window.addEventListener('scroll', () => {
 			if (this.state.btnLoading) {
 				return false
 			}
@@ -104,7 +104,7 @@ export default class PCImageBlock extends React.Component {
 				clearTimeout(timeoutId)
 			}
 			timeoutId = setTimeout(callback, 100)
-		}.bind(this), false);
+		}, false);
 	};
 	render() {
 		const listData = this.state.keyword!=="" ? this.state.listData_default : this.state["listData_"+this.state.type];

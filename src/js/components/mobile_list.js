@@ -32,7 +32,7 @@ export default class MobileList extends React.Component {
 		const moreBtn = this.refs.more
 		const loadMoreFn = this.getMore.bind(this)
 		let timeoutId
-		function callback() {
+		const callback = () => {
 			const top = moreBtn.getBoundingClientRect().top
 			const windowHeight = window.screen.height
 			if (top && top < windowHeight - 100) {
@@ -40,7 +40,7 @@ export default class MobileList extends React.Component {
 				loadMoreFn()
 			}
 		}
-		window.addEventListener('scroll', function () {
+		window.addEventListener('scroll', () => {
 			if (this.state.btnLoading) {
 				return false
 			}
@@ -48,7 +48,7 @@ export default class MobileList extends React.Component {
 				clearTimeout(timeoutId)
 			}
 			timeoutId = setTimeout(callback, 100)
-		}.bind(this), false);
+		}, false);
 	};
 	render() {
 		const listData = this.state.listData;

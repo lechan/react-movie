@@ -54,7 +54,7 @@ export default class PCImageBlock extends React.Component {
   };
   getMore(){
     this.setState({ p:this.state.p += 1, btnLoading: true });
-    let This = this;
+	let This = this;
     if(this.state.keyword!==""){
     	searchListData("FilmDetail",this.state.keyword,this.state.p,this.props.pagesize,function(data){
     		if(data.length===This.props.pagesize){
@@ -75,14 +75,37 @@ export default class PCImageBlock extends React.Component {
     		}
 			});
 		}
-  };
-  handleImagesLoaded(imagesLoadedInstance) {
-    // this.show();
-    // console.log(imagesLoadedInstance)
-  };
-  handleLayoutComplete() { 
+	};
+	handleImagesLoaded(imagesLoadedInstance) {
+		// this.show();
+		// console.log(imagesLoadedInstance)
+	};
+	handleLayoutComplete() { 
 
-  };
+	};
+  	componentDidMount() {
+		// 使用滚动时自动加载更多
+		const moreBtn = this.refs.more
+		const loadMoreFn = this.getMore.bind(this)
+		let timeoutId
+		function callback() {
+			const top = moreBtn.getBoundingClientRect().top
+			const windowHeight = window.screen.height
+			if (top && top < windowHeight - 200) {
+				// 证明 moreBtn 已经被滚动到暴露在页面可视范围之内了
+				loadMoreFn()
+			}
+		}
+		window.addEventListener('scroll', function () {
+			if (this.state.btnLoading) {
+				return false
+			}
+			if (timeoutId) {
+				clearTimeout(timeoutId)
+			}
+			timeoutId = setTimeout(callback, 100)
+		}.bind(this), false);
+	};
 	render() {
 		const listData = this.state.keyword!=="" ? this.state.listData_default : this.state["listData_"+this.state.type];
 		const list = listData && (listData.length>0
@@ -125,7 +148,7 @@ export default class PCImageBlock extends React.Component {
 						<Spin size="large" tip="加载中..." spinning={this.state.loading} />
 					</div>
 				</div>
-				<div class="more">
+				<div class="more" ref="more">
 					<Button type="primary" size="large" loading={this.state.btnLoading} onClick={this.getMore.bind(this)}>加载更多</Button>
 				</div>
 			</div>
